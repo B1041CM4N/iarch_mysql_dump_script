@@ -56,11 +56,8 @@ if [ -n "$DB_USER" ] || [ -n "$DB_PASS" ] || [ -n "$DB_NAME" ] || [ -n "$DB_HOST
   
   ## Mensaje de inicio de ejecución del script (Para corroborar que pasó las validaciones anteriores)
   echo "***~~~- Espere por favor -~~~***"
+  sleep 1
   
-  ## Borrar archivos con extensión *.bz2 anteriores
-  command rm ./*.bz2
-  sleep 1;
-
   ## Generando el archivo dump
   $DUMPPATH -h $DB_HOST -u $DB_USER -p$DB_PASS $DB_NAME | bzip2 > $FILENAME
 
@@ -69,6 +66,10 @@ if [ -n "$DB_USER" ] || [ -n "$DB_PASS" ] || [ -n "$DB_NAME" ] || [ -n "$DB_HOST
     echo "###~- El archivo de dump ha sido creado satisfactoriamente, puedes buscarlo por el nombre: $FILENAME -~###"
   else
     echo "###~- Ocurrió un problema en la operación de backup de la base de datos, corrobora los datos de conexión y permisos por favor. -~###"
+
+    #### Borrar archivo dump.bz2 vacío ####
+    command rm dump.bz2
+
     exit 1
   fi
 else
