@@ -8,3 +8,5 @@ Script para realizar dumps de bases de datos MySQL, se deben pasar como variable
 * DB_PORT
 
 ## Para ejecutar el script, ./dump.sh
+
+### Generará un archivo de nombre dump.bz2 en el directorio donde se ejecute.
